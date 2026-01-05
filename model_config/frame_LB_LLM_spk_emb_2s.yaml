@@ -1,0 +1,24 @@
+audio_enc_dim: 768
+speaker_enc_dim: 768
+llm_dim: 2048
+audio_encoder_name: null 
+audio_model_path: null 
+speaker_encoder_name: null
+speaker_encoder_path: null
+speech_enroll_prefix: null
+linear_neurons: 1
+input_size: 12
+connector_name: "cnn"
+llm_name: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+llm_model_path: null 
+finetune_encoder: False
+freeze_linear_layer: True
+audio_length: 2
+connector_k: 2
+use_lora: False
+lora_r: 8
+lora_alpha: 16
+max_lr: 0.0001
+warmup_steps: 100
+grad_accumulate_steps: 8
+apply_suggest_word: "combined" # choose from ["combined","separate", None], None for greedy decoding

@@ -1,0 +1,22 @@
+audio_enc_dim1: 768
+audio_enc_dim2: 1280
+llm_dim: 2048 ## [tinyllama=2048, llama 3.2 3b= 3072]
+audio_encoder_name: null 
+audio_model_path: null 
+linear_neurons: 1
+input_size: 12
+connector_name: "cnn"
+llm_name: "TinyLlama/TinyLlama-1.1B-Chat-v1.0" ##["meta-llama/Llama-3.2-3B" "TinyLlama/TinyLlama-1.1B-Chat-v1.0" "meta-llama/Llama-3.1-8B-Instruct" ]
+llm_model_path: null 
+finetune_encoder: False
+freeze_linear_layer: False
+connector_k: 2
+connector_k2: 2
+use_lora: True
+lora_r: 16
+lora_alpha: 32
+max_lr: 0.0002
+warmup_steps: 100
+grad_accumulate_steps: 4
+apply_suggest_word: "combined" # choose from ["combined","separate", None], None for greedy decoding
+modify_time_constrain: True

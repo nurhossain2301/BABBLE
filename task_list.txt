@@ -1,0 +1,18 @@
+* .1s ffame with 10s context -real done
+* .1s frame with 5s context - real done
+* 10s event real - caption done
+* 5s event real 
+* 30s event real 
+* multi encoder one done
+* multi-encoder different approach
+* use STC connector
+*learn traning new token
+
+*reinforecment learning
+*ecg-digitization and use diffusion
+*video-llm for mindfulness
+*nested paper from gogole for long audio and mindfulness
+*multi-resolution hubert for meditite
+*hubert/wavLm type pretrain for meditite
+*heartlang for imu foundational model
+
