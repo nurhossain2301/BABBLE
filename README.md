@@ -5,7 +5,7 @@ LittleBeats-LLM can reliably and precisely label speaker types and vocalizations
 Part of the code in this repository is adapte from [SpeechLLM](https://github.com/skit-ai/SpeechLLM) Github Repository.
 
 The model architecture looks like the following:
-![Alt Text](LLM_architecture.png)
+<!-- ![Alt Text](LLM_architecture.png) -->
 
 The model is based on a lightweight large language model, [TinyLlama](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0), and light weight audio encoder, [wav2vec2-LL4300](https://huggingface.co/lijialudew/wav2vec_LittleBeats_LENA), which is pretrained on large-scale 4300-hour of naturalistic home recordings. The encoded audio feature is passed to a CNN tokenizer to align the audio and text modalities. The auxiliary speaker embedding branch is optional, which is helpful when non-family members have higher signal-to-noise (SNR) ratios. More details about the architecture can be found in our paper: TO-DO.
 
@@ -33,12 +33,12 @@ pip install -r requirements.txt
 
 ### **Model Weights and Checkpoints**
 
-You can download our released model checkpoints from our [HuggingFace](https://huggingface.co/lijialudew/LittleBeats-LLM) repository.  
-To run the model, it's required to download **[wav2vec2-LL4300](https://huggingface.co/lijialudew/wav2vec_LittleBeats_LENA/blob/main/LL_4300/checkpoint_best.pt)**.
+<!-- You can download our released model checkpoints from our [HuggingFace](https://huggingface.co/lijialudew/LittleBeats-LLM) repository.   -->
+<!-- To run the model, it's required to download **[wav2vec2-LL4300](https://huggingface.co/lijialudew/wav2vec_LittleBeats_LENA/blob/main/LL_4300/checkpoint_best.pt)**. -->
 
 ---
 
-### **Available Checkpoints**
+<!-- ### **Available Checkpoints**
 
 | **Model**                                  | **Model Weights**  | **Checkpoint URL**                                             |
 |--------------------------------------------|--------------------|---------------------------------------------------------------|
@@ -49,12 +49,9 @@ To run the model, it's required to download **[wav2vec2-LL4300](https://huggingf
 |--------------------------------------------|--------------------|---------------------------------------------------------------|
 | Event-based LittleBeats-LLM           | 1.2B              | [Huggingface](https://huggingface.co/lijialudew/LittleBeats-LLM/blob/main/Wav2vec-LL-CNN-tinyllama_event_2_1.2B.ckpt)  |
 | Frame-based LittleBeats-LLM (20 frames)| 1.2B              | [Huggingface](https://huggingface.co/lijialudew/LittleBeats-LLM/blob/main/Wav2vec-LL-CNN-tinyllama_frame_20_2s_1.2B.ckpt)    |
-| Frame-based LittleBeats-LLM (1 frame)  | 1.2B              | [Huggingface](https://huggingface.co/lijialudew/LittleBeats-LLM/blob/main/Wav2vec-LL-CNN-tinyllama_frame_0.1_2_1.2B.ckpt) |
+| Frame-based LittleBeats-LLM (1 frame)  | 1.2B              | [Huggingface](https://huggingface.co/lijialudew/LittleBeats-LLM/blob/main/Wav2vec-LL-CNN-tinyllama_frame_0.1_2_1.2B.ckpt) | -->
 
-#### **Models With Speaker Embeddings**
-| **Model**                                  | **Model Weights**  | **Checkpoint URL**                                             |
-|--------------------------------------------|--------------------|---------------------------------------------------------------|
-| Frame-based LittleBeats-LLM (20 frames)| 1.3B              | [Huggingface](https://huggingface.co/lijialudew/LittleBeats-LLM/blob/main/Wav2vec-LL-CNN-tinyllama_frame_20_2s_spk_emb_1.3B.ckpt)    |
+
 
 ### **Additional Dependencies**
 Our model also utilizes **[TinyLlama](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)**, which can be downloaded directly via HuggingFace's `transformers` library.
@@ -179,17 +176,6 @@ or
 }
 ```
 
-### **Data Preprocessing for Enrollment Data (Applicable for Model with Speaker Embedding only)**
-Prepare 15-second audio for each family member, female (FAN), male (MAN), and child (CXN), and save it in a separate wav folder as 
-```
-wav_enrollment/
-│── site_ID1_CXN_enroll.wav # site: data collection site, ID: anonymized family ID               
-│── site_ID1_FAN_enroll.wav                
-│── site_ID1_MAN_enroll.wav
-│── site_ID2_FAN_enroll.wav                
-│── site_ID2_MAN_enroll.wav
-...
-```
 
 
 ---
@@ -234,19 +220,7 @@ python train_LB_frame_2s.py
 python train_LB_frame_0.1s_2s.py
 ```
 
-**Training Models With Speaker Embeddings**
 
-For models with speaker embeddings, specify additional path pointers in the training script:
-
-```
-speaker_model_path = "path_to_LL4300_checkpoint"
-speech_enroll_prefix = "path_to_speech_enrollment_wav"
-```
-
-Then run
-```
-python train_LB_frame_spk_emb_w2v2.py
-```
 
 ## Inference the model
 ### Specify Checkpoint Path
@@ -282,7 +256,7 @@ We show **unweighted F1 scores, in percent, of LB-LLM models trained on syntheti
 Complete results can be found in our paper.
 
 
-### 
+<!-- ### 
 
 | Model                  | Apply Speaker Network? | Trainable Param | Total Param | RTF  | SPK  | SEC  | CHN  | FAN  | MAN  | CXN  | AVG VC |
 |------------------------|------------------------|-----------------|-------------|------|------|------|------|------|------|------|--------|
@@ -290,9 +264,9 @@ Complete results can be found in our paper.
 | LB-LLM (20 frames)      | ❌                      | 136M            | 1.2B        | 0.02 | 83.2 | 59.5 | 90.9 | 86.8 | **86.5** | 90.0 | 88.6   |
 |                         | ✅                      | 137M            | 1.3B        | 0.08 | 84.6 | 59.0 | 91.4 | **87.8** | 85.4 | 90.9 | **88.9**   |
 | LB-LLM (1 frame)        | ❌                      | 136M            | 1.2B        | 0.4  | **89.4** | 46.3 | **94.7** | 83.7 | 77.8 | **95.2** | 87.9   |
+ -->
 
-
-**Table Description:**  
+<!-- **Table Description:**  
 - **Model**: Architecture used  
 - **Apply Speaker Network?**: Whether speaker embedding networks are applied  
 - **Trainable Param** / **Total Param**: Number of trainable and total parameters  
@@ -301,9 +275,9 @@ Complete results can be found in our paper.
 - **SEC**: Secondary speaker detection
 - **CHN, FAN, MAN, CXN**: Primary speaker vocalization classification tasks
 - **AVG VC**: Average F1 score across CHN, FAN, MAN, and CXN tiers  
-- **Bolded values** represent the best results for each dataset.
+- **Bolded values** represent the best results for each dataset. -->
 
-## **JSON files to use to reproduce result**
+<!-- ## **JSON files to use to reproduce result**
 
 **0.1s frame based json**
 - **train**: /work/hdd/bebr/PRJ_LLM_SP25/data/json_mix/train_LB_LENA_voc_snr_5_mix_8_skip3.json
@@ -313,7 +287,7 @@ Complete results can be found in our paper.
 **2s-based frame/event json**
 - **train**: /work/hdd/bebr/PRJ_LLM_SP25/data/json_mix_LLM/train_snr_5_mix_8_2s.json
 - **dev**: /work/hdd/bebr/PRJ_LLM_SP25/data/json_mix_LLM/dev_snr_5_mix_8_2s.json
-- **test**:/work/hdd/bebr/PRJ_LLM_SP25/data/json_mix_LLM/test_snr_5_mix_8_2s.json
+- **test**:/work/hdd/bebr/PRJ_LLM_SP25/data/json_mix_LLM/test_snr_5_mix_8_2s.json -->
 
 ## Citations
 If you found this recipe helpful, please cite as us
@@ -326,6 +300,6 @@ The models provided in this repository are not flawless and may produce errors i
 
 
 ## License
-This project is released under the Apache 2.0 license as found in the LICENSE file. The released checkpoints, and code are intended for research purpose subject to the license of 
-[wav2vec2-LL4300](https://huggingface.co/lijialudew/wav2vec_LittleBeats_LENA) and [TinyLlama/TinyLlama-1.1B-Chat-v1.0]( https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0) models.
+<!-- This project is released under the Apache 2.0 license as found in the LICENSE file. The released checkpoints, and code are intended for research purpose subject to the license of 
+[wav2vec2-LL4300](https://huggingface.co/lijialudew/wav2vec_LittleBeats_LENA) and [TinyLlama/TinyLlama-1.1B-Chat-v1.0]( https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0) models. -->
 
