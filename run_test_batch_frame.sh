@@ -11,8 +11,7 @@
 #SBATCH -t 6:00:00
 #SBATCH -e slurm-%j.err
 #SBATCH -o slurm-%j.out
-#SBATCH --mail-user=mkhan@wpi.edu    # <- replace "NetID" with your University NetID
-#SBATCH --mail-type=BEGIN,END
+
 
 source venv-gemma/bin/activate
 # Exit immediately if a command exits with a non-zero status
